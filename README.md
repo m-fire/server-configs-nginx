@@ -2,15 +2,13 @@
 
 [![Test](https://github.com/h5bp/server-configs-nginx/workflows/server/badge.svg)](https://github.com/h5bp/server-configs-nginx/actions?query=workflow%3Aserver)
 
-**Nginx Server Configs** is a collection of configuration files that can help
-your server improve the website's performance and security, while also
-ensuring that resources are served with the correct content-type and are
-accessible, if needed, even cross-domain.
+**Nginx Server Configs** is 도움이 될 수 있는 구성 파일 모음
+서버는 웹사이트의 성능과 보안을 개선하는 동시에 리소스가 올바른 콘텐츠 유형으로 제공되고 필요한 경우 도메인 간에도 액세스할 수 있도록 보장합니다.
 
 
 ## Getting Started
 
-Using the Nginx server configs repo directly has a few required steps to be able to work.
+Nginx 서버 구성 리포지토리를 직접 사용하려면 몇 가지 필수 단계가 있습니다.
 
 * [Nginx Beginners Guide](https://nginx.org/en/docs/beginners_guide.html)
 * [Nginx Request Processing](https://nginx.org/en/docs/http/request_processing.html)
@@ -18,39 +16,38 @@ Using the Nginx server configs repo directly has a few required steps to be able
 
 ### Check `nginx.conf` settings
 
-The first thing to check is that the `nginx.conf` file contains appropriate values for
-your specific install.
+가장 먼저 확인해야 할 것은 `nginx.conf` 파일에 특정 설치에 적합한 값이 포함되어 있는지 확인하는 것입니다.
 
-Most specific variables are:
+가장 구체적인 변수는 다음과 같습니다:
 
 * `user`
 * `error_log`
 * `pid`
 * `access_log`
 
-### Nginx test and restart
+### Nginx 테스트 및 재시작
 
-* To verify Nginx config
+* Nginx 현재구성 검증:
 
   ```shell
   nginx -t
   ```
 
-* To verify Nginx config with a custom file
+* 사용자 정의 파일로 Nginx 구성 검증:
 
   ```shell
   nginx -t -c nginx.conf
   ```
 
-* To reload Nginx and apply the new config
+* Nginx 리로드 및 새구성 적용:
 
   ```shell
   nginx -s reload
   ```
 
-### Repository structure
+### 저장소 구조
 
-This repository has the following structure:
+이 리포지토리의 구조는 다음과 같습니다:
 
 ```text
 ./
@@ -69,67 +66,55 @@ This repository has the following structure:
 
 * **`conf.d/`**
 
-  This directory should contain all the `server` definitions.
+  이 디렉터리에는 모든 `server` 정의가 포함되어야 합니다.
 
-  Except if they are dot prefixed or non `.conf` extension, all files in this
-  directory are loaded automatically.
+  점 앞에 접두사가 붙거나 확장자가 '.conf'가 아닌 경우를 제외하고 이 디렉터리에 있는 모든 파일은 자동으로 로드됩니다.
 
   * **`templates` folder**
 
-    Files in this directory contain a `server` template for secure and non-secure
-    hosts. They are intended to be copied in the `conf.d` directory with all
-    `example.com` occurrences changed to the target host.
+    이 디렉터리의 파일에는 보안 및 비보안 호스트를 위한 `server` 템플릿이 포함되어 있습니다. 이 파일은 모든 `example.com`이 대상 호스트로 변경된 상태로 `conf.d` 디렉터리에 복사되어야 합니다.
 
 * **`h5bp/`**
 
-  This directory contains config snippets (mixins) to be included as desired.
+  이 디렉토리에는 원하는 대로 포함할 수 있는 스니펫(mixins)이 포함되어 있습니다.
 
-  There are two types of config files provided: individual config snippets and
-  combined config files which provide convenient defaults.
+  제공되는 config 파일에는 개별 config 스니펫과 편리한 기본값을 제공하는 결합 config 파일의 두 가지 유형이 있습니다.
 
   * **`basic.conf`**
 
-    This file loads a small subset of the rules provided by this repository to add
-    `expires` headers, allow cross-domain fonts and protect system files from web
-    access.
-    The `basic.conf` file includes the rules which are recommended to always be
-    defined.
+    이 파일은 이 저장소에서 제공하는 규칙의 일부 하위 집합을 로드하여 'expires' 헤더를 추가하고, cross-domain 글꼴을 허용하며, 웹 액세스로부터 시스템 파일을 보호합니다. 액세스합니다. `basic.conf` 파일에는 항상 정의하는 것이 권장되는 규칙이 포함되어 있습니다.
 
   * **`location/`**
-  
-    Files in this directory contain one or more `location` directives. They are
-    intended to be loaded in the `server` context (or, in a nested `location` block).
+
+    이 디렉토리에 있는 파일은 하나 이상의 `location` 지시어를 포함합니다. 이러한 파일은 `server` 컨텍스트(또는 중첩된 `location` 블록)에서 로드되도록 되어 있습니다.
 
 * **`custom.d/`**
 
-  This directory should contain all the custom `nginx.conf` configuration.
+  이 디렉터리에는 모든 사용자 정의 `nginx.conf` 구성이 포함되어야 합니다.
 
-  Except if they are dot prefixed or non `.conf` extension, all files in this
-  folder are loaded automatically.
+  점 앞에 접두사가 붙거나 확장자가 `.conf`가 아닌 경우를 제외하고 이 폴더의 모든 파일은 자동으로 로드됩니다.
 
 * **`mime.types`**
 
-  The `mime.types` file is responsible for mapping file extensions to MIME types.
+  `mime.types` 파일은 파일 확장자를 MIME 유형에 매핑하는 역할을 합니다.
 
 * **`nginx.conf`**
 
-  The main Nginx config file.
+  기본 Nginx 구성 파일입니다.
 
 
-## Usage
+## 사용법
 
 ### As a reference
 
-To use as reference requires no special installation steps, download/checkout the
-repository to a convenient location and adapt your existing Nginx configuration
-incorporating the desired functionality from this repository.
+reference 로 사용하려면 특별한 설치단계 없이 편리한 위치에 리포지토리를  download/checkout 하고, 이 리포지토리에서 원하는 기능을 통합하여 기존 Nginx 구성을 조정하면 됩니다.
 
 Download the [latest release archive](https://github.com/h5bp/server-configs-nginx/releases/latest).
 
 ### Directly
 
-To use directly, replace the Nginx config directory with this repository.
-For example:
+직접 사용하려면 Nginx config 디렉터리를 이 리포지토리로 바꾸세요.
+예를 들어:
 
 ```shell
 nginx -s stop
@@ -140,26 +125,26 @@ git clone https://github.com/h5bp/server-configs-nginx.git nginx
 nginx
 ```
 
-### Manage sites
+### 사이트 관리
 
 ```bash
 cd /etc/nginx/conf.d
 ```
 
-* Creating a new site
+* 사이트 생성
 
   ```bash
   cp templates/example.com.conf .actual-hostname.conf
   sed -i 's/example.com/actual-hostname/g' .actual-hostname.conf
   ```
 
-* Enabling a site
+* 사이트 활성화
 
   ```bash
   mv .actual-hostname.conf actual-hostname.conf
   ```
 
-* Disabling a site
+* 사이트 비활성화
 
   ```bash
   mv actual-hostname.conf .actual-hostname.conf
