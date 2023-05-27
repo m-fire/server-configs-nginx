@@ -120,7 +120,7 @@ Download the [latest release archive](https://github.com/h5bp/server-configs-ngi
 nginx -s stop
 cd /etc
 mv nginx nginx-previous
-git clone https://github.com/h5bp/server-configs-nginx.git nginx
+git clone https://github.com/m-fire/server-configs-nginx nginx
 # install-specific edits
 nginx
 ```
